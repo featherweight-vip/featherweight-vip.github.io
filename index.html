@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Featherweight VIP — Verification IP for cocotb, UVM &amp; formal</title>
+  <meta name="description" content="Lightweight protocol Verification IP. One synthesizable transactor drives cocotb, UVM, and formal — with protocol checkers and coverage included.">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="assets/brand/featherweight-vip-favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/site.css">
+  <meta property="og:title" content="Featherweight VIP — Verification IP">
+  <meta property="og:description" content="Lightweight protocol Verification IP for cocotb, UVM, and formal.">
+  <meta property="og:image" content="assets/brand/featherweight-vip-lockup.png">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <span class="brand">
+      <img src="assets/brand/featherweight-vip-icon.svg" alt="">
+      Featherweight <span class="vip">VIP</span>
+    </span>
+    <nav>
+      <a href="#why">Why</a>
+      <a href="#platforms">Platforms</a>
+      <a href="#kit">In a kit</a>
+      <a href="#coverage">Coverage</a>
+      <a href="#start">Get started</a>
+      <a href="https://github.com/featherweight-vip">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero" style="border-top:0">
+    <div class="wrap">
+      <img class="lockup" src="assets/brand/featherweight-vip-lockup.svg" alt="Featherweight VIP — Verification IP">
+      <p class="tag">Lightweight protocol <b>Verification IP</b> for <b>cocotb</b>, <b>UVM</b>, and <b>formal</b>. One synthesizable transactor, every platform — with protocol checkers and coverage included.</p>
+      <div class="cta">
+        <a class="btn primary" href="#start">Get started</a>
+        <a class="btn ghost" href="#platforms">See the protocols</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="why">
+    <div class="wrap">
+      <h2>Why Featherweight VIP</h2>
+      <p class="lede">It's a kit you import, not a methodology you adopt. Your simulator, cocotb environment, and UVM flow stay exactly where they are.</p>
+      <div class="cards">
+        <div class="card">
+          <h3>Low lift</h3>
+          <p>Drop a kit into the platform you already use. No new tool, no new flow, no language to learn.</p>
+        </div>
+        <div class="card">
+          <h3>One transactor, every platform</h3>
+          <p>A synthesizable FIFO&nbsp;⟷&nbsp;protocol transactor drives cocotb (signals), UVM (classes), and formal (conversion + checks) from a single core.</p>
+        </div>
+        <div class="card">
+          <h3>Checkers included</h3>
+          <p>Protocol assertions authored as SVA <em>and</em> synthesizable Verilog — so the same checks run in simulation and in formal (SymbiYosys), behind an <code>ENABLED</code> flag.</p>
+        </div>
+        <div class="card coverage">
+          <h3><span class="dot">●</span> Coverage you can close</h3>
+          <p>Every kit ships a <b>protocol coverage</b> model — SystemVerilog covergroups today, portable coverage planned — so "did we exercise the protocol?" has a measurable answer.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="platforms">
+    <div class="wrap">
+      <h2>Protocols &amp; platforms</h2>
+      <p class="lede">Each kit provides Initiator, Target, and Monitor roles. The matrix below is the project status board — every kit targets all four platforms, and every kit includes a coverage model.</p>
+      <div class="matrix-wrap">
+        <table class="matrix">
+          <thead>
+            <tr>
+              <th class="proto">Protocol</th>
+              <th>UVM</th>
+              <th>Formal</th>
+              <th>cocotb</th>
+              <th>PSS</th>
+              <th>Coverage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="proto"><a href="https://github.com/featherweight-vip/fwvip-wb">Wishbone</a></td><td class="yes">✅</td><td class="yes">✅</td><td class="wip">🚧</td><td class="no">⬜</td><td class="cov">covergroups</td></tr>
+            <tr><td class="proto"><a href="https://github.com/featherweight-vip/fwvip-spi">SPI</a></td><td class="yes">✅</td><td class="wip">🚧</td><td class="wip">🚧</td><td class="no">⬜</td><td class="cov">covergroups</td></tr>
+            <tr><td class="proto">AXI4-Lite</td><td class="wip">🚧</td><td class="wip">🚧</td><td class="no">⬜</td><td class="no">⬜</td><td class="cov">planned</td></tr>
+            <tr><td class="proto">AXI4</td><td class="no">⬜</td><td class="no">⬜</td><td class="no">⬜</td><td class="no">⬜</td><td class="cov">planned</td></tr>
+            <tr><td class="proto">AHB</td><td class="no">⬜</td><td class="no">⬜</td><td class="no">⬜</td><td class="no">⬜</td><td class="cov">planned</td></tr>
+            <tr><td class="proto">APB</td><td class="no">⬜</td><td class="no">⬜</td><td class="no">⬜</td><td class="no">⬜</td><td class="cov">planned</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="legend">✅ available &nbsp;·&nbsp; 🚧 in progress &nbsp;·&nbsp; ⬜ planned &nbsp;—&nbsp; each protocol's docs live in its own <code>fwvip-&lt;proto&gt;</code> repo (linked above); request a new one via a <a href="https://github.com/featherweight-vip">GitHub issue</a>.</p>
+    </div>
+  </section>
+
+  <section id="kit">
+    <div class="wrap">
+      <h2>What's in a kit</h2>
+      <p class="lede">Three roles — Initiator, Target, Monitor — and for each, a stack from synthesizable core up to a class-based UVM agent.</p>
+      <div class="kit">
+        <div class="k">Core transactor</div>
+        <div class="v">Synthesizable, with a signal-level FIFO per logical stream (e.g. request / response) and an egress FIFO for infrequent events such as reset.</div>
+        <div class="k">Env interface</div>
+        <div class="v">The FIFO interface, surfaced for SV/UVM today; cocotb signal-level, Python (PyHDL-IF), and Zuspec/sysmesh DPI interfaces planned.</div>
+        <div class="k">UVM agent</div>
+        <div class="v">A class-based agent — driver / sequencer / monitor, sequences, and config — layered thinly over the core.</div>
+        <div class="k">Checkers</div>
+        <div class="v">Protocol assertions as SVA + synthesizable Verilog: one set, usable in simulation and in formal.</div>
+        <div class="k">Coverage</div>
+        <div class="v">A protocol covergroup model — the bins that define "the protocol was exercised."</div>
+      </div>
+
+      <div style="height:26px"></div>
+      <div class="flow">
+        <span class="node">signal-level FIFOs</span>
+        <span class="arrow">→</span>
+        <span class="node tx">transactor&nbsp;(synthesizable)</span>
+        <span class="arrow">→</span>
+        <span class="node plat">protocol</span>
+      </div>
+      <p class="legend">The same core feeds cocotb (drive the FIFO signals), UVM (the class agent), and formal (the transactor as a protocol converter + checker).</p>
+    </div>
+  </section>
+
+  <section id="coverage">
+    <div class="wrap">
+      <h2><span class="pass">Collecting protocol coverage</span></h2>
+      <p class="lede">Coverage isn't an add-on — it ships with every kit. The questions a coverage model answers: which transfer types, sizes, and response codes were seen? Which handshake corners (back-pressure, wait states, retries, errors) actually occurred?</p>
+      <div class="cards">
+        <div class="card coverage">
+          <h3><span class="dot">●</span> SystemVerilog covergroups</h3>
+          <p>Each kit's Monitor samples a protocol covergroup: transfer kind, address/data widths in use, burst/wait/retry/error events, and cross-coverage of the interesting corners. Available today.</p>
+        </div>
+        <div class="card coverage">
+          <h3><span class="dot">●</span> Portable coverage (planned)</h3>
+          <p>A Zuspec/PSS coverage layer is planned so the same coverage intent travels across simulation, formal, and emulation — one model, every engine.</p>
+        </div>
+      </div>
+      <div style="height:18px"></div>
+      <div class="code-block">
+        <h4>Enable coverage on the monitor agent (UVM)</h4>
+<pre><code><span class="tok-com">// the Monitor agent samples the protocol covergroup automatically</span>
+<span class="tok-key">fwvip_wb_mon_cfg</span> cfg = fwvip_wb_mon_cfg::type_id::create("cfg");
+cfg.coverage_enable = <span class="tok-pass">1'b1</span>;   <span class="tok-com">// collect protocol coverage</span>
+cfg.checks_enable   = <span class="tok-pass">1'b1</span>;   <span class="tok-com">// run protocol checkers alongside</span>
+uvm_config_db#(fwvip_wb_mon_cfg)::set(this, "env.mon_agent", "cfg", cfg);</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="start">
+    <div class="wrap">
+      <h2>It's still just your testbench</h2>
+      <p class="lede">The same kit, two platforms. Pull in the core, point it at your DUT's signals, and go.</p>
+      <div class="code-grid">
+        <div class="code-block">
+          <h4>cocotb — drive the transactor's FIFOs</h4>
+<pre><code><span class="tok-key">from</span> fwvip_wb <span class="tok-key">import</span> WishboneInitiator
+
+wb = WishboneInitiator(dut, clk=dut.clk)
+<span class="tok-key">await</span> wb.write(addr=<span class="tok-pass">0x40</span>, data=<span class="tok-pass">0xDEAD_BEEF</span>)
+val = <span class="tok-key">await</span> wb.read(addr=<span class="tok-pass">0x40</span>)
+<span class="tok-com"># checkers + coverage run on the monitor</span></code></pre>
+        </div>
+        <div class="code-block">
+          <h4>UVM — the class-based agent</h4>
+<pre><code><span class="tok-key">fwvip_wb_init_agent</span> m_init;
+<span class="tok-key">fwvip_wb_mon_agent</span>  m_mon;
+<span class="tok-com">// in build_phase</span>
+m_init = fwvip_wb_init_agent::type_id::create("m_init", this);
+m_mon  = fwvip_wb_mon_agent ::type_id::create("m_mon",  this);
+<span class="tok-com">// drive via fwvip_wb_write_seq / fwvip_wb_read_seq</span></code></pre>
+        </div>
+      </div>
+      <div class="cta" style="justify-content:flex-start">
+        <a class="btn primary" href="https://github.com/featherweight-vip/fwvip-wb">Browse the Wishbone kit</a>
+        <a class="btn ghost" href="https://github.com/featherweight-vip">All repositories</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="related">
+    <div class="wrap">
+      <h2>Part of the Featherweight family</h2>
+      <p class="lede">Featherweight VIP is the verification sibling of
+        <a href="https://github.com/featherweight-hdl">Featherweight HDL</a> — a
+        hardware description <em>library</em>, not a language. Both build on the
+        same synthesizable transactor model: HDL lowers structure to RTL; VIP
+        verifies behavior against it.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Featherweight VIP · Verification IP · protocol kits for cocotb · UVM · formal</span>
+    <span>
+      <a href="https://github.com/featherweight-vip">GitHub</a> ·
+      <a href="https://github.com/featherweight-hdl">Featherweight HDL</a> ·
+      <a href="https://accellera.org/community/portable-stimulus">Accellera PSS</a>
+    </span>
+  </div>
+</footer>
+
+</body>
+</html>

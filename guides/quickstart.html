@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quickstart — Featherweight VIP</title>
+  <meta name="description" content="Consume a Featherweight VIP kit from cocotb, UVM, or formal.">
+  <link rel="icon" href="../assets/brand/featherweight-vip-favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="../index.html" style="color:inherit">
+      <img src="../assets/brand/featherweight-vip-icon.svg" alt="">
+      Featherweight <span class="vip">VIP</span>
+    </a>
+    <nav>
+      <a href="../index.html#platforms">Protocols</a>
+      <a href="../roadmap.html">Roadmap</a>
+      <a href="https://github.com/featherweight-vip">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" style="border-top:0; padding-bottom:18px">
+    <div class="wrap">
+      <h1 style="font-size:clamp(28px,5vw,42px); margin:0">Quickstart</h1>
+      <p class="tag">Pick your platform. The same synthesizable kit drives all three — checkers and coverage come along on the Monitor.</p>
+    </div>
+  </section>
+
+  <section style="border-top:0; padding-top:8px">
+    <div class="wrap">
+      <h2>1 · cocotb</h2>
+      <p class="lede">Drive the transactor's signal-level FIFOs from Python. No SystemVerilog testbench required.</p>
+<pre><code><span class="tok-key">from</span> fwvip_wb <span class="tok-key">import</span> WishboneInitiator, WishboneMonitor
+
+<span class="tok-key">async def</span> test_rw(dut):
+    init = WishboneInitiator(dut, clk=dut.clk, rst=dut.rst)
+    mon  = WishboneMonitor(dut, clk=dut.clk)   <span class="tok-com"># checkers + coverage</span>
+    <span class="tok-key">await</span> init.reset()
+    <span class="tok-key">await</span> init.write(addr=<span class="tok-pass">0x40</span>, data=<span class="tok-pass">0xCAFEF00D</span>)
+    <span class="tok-key">assert</span> <span class="tok-key">await</span> init.read(addr=<span class="tok-pass">0x40</span>) == <span class="tok-pass">0xCAFEF00D</span></code></pre>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>2 · SystemVerilog / UVM</h2>
+      <p class="lede">Instantiate the class-based agents; enable checks and coverage through the monitor config.</p>
+<pre><code><span class="tok-com">// build_phase</span>
+m_init = fwvip_wb_init_agent::type_id::create("m_init", this);
+m_mon  = fwvip_wb_mon_agent ::type_id::create("m_mon",  this);
+
+<span class="tok-key">fwvip_wb_mon_cfg</span> cfg = fwvip_wb_mon_cfg::type_id::create("cfg");
+cfg.checks_enable   = <span class="tok-pass">1'b1</span>;
+cfg.coverage_enable = <span class="tok-pass">1'b1</span>;   <span class="tok-com">// collect protocol coverage</span>
+uvm_config_db#(fwvip_wb_mon_cfg)::set(this, "m_mon", "cfg", cfg);
+
+<span class="tok-com">// run_phase: drive sequences</span>
+fwvip_wb_write_seq::type_id::create("wr").start(m_init.sqr);
+fwvip_wb_read_seq ::type_id::create("rd").start(m_init.sqr);</code></pre>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>3 · Formal (SymbiYosys)</h2>
+      <p class="lede">The transactor doubles as a protocol converter; the synthesizable checker becomes your formal property set.</p>
+<pre><code><span class="tok-com"># bind the synthesizable checker to the DUT bus</span>
+<span class="tok-key">bind</span> dut fwvip_wb_checker #(.ENABLED(1)) u_chk (.*);
+
+<span class="tok-com"># wishbone.sby</span>
+[options]
+mode prove
+[engines]
+smtbmc
+[script]
+read -formal dut.v fwvip_wb_checker.v
+prep -top dut</code></pre>
+      <p class="legend" style="margin-top:14px">Same properties as simulation — authored once, run in both engines.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Featherweight VIP · Quickstart</span>
+    <span><a href="../index.html">home</a> · <a href="https://github.com/featherweight-vip">GitHub</a></span>
+  </div>
+</footer>
+</body>
+</html>

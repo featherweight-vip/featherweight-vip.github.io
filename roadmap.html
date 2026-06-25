@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Roadmap — Featherweight VIP</title>
+  <link rel="icon" href="assets/brand/featherweight-vip-favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html" style="color:inherit">
+      <img src="assets/brand/featherweight-vip-icon.svg" alt="">
+      Featherweight <span class="vip">VIP</span>
+    </a>
+    <nav>
+      <a href="index.html#platforms">Protocols</a>
+      <a href="guides/quickstart.html">Quickstart</a>
+      <a href="https://github.com/featherweight-vip">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" style="border-top:0; padding-bottom:18px">
+    <div class="wrap">
+      <h1 style="font-size:clamp(28px,5vw,42px); margin:0">Roadmap</h1>
+      <p class="tag">Two axes: more protocols, and more platforms per protocol. Coverage ships with every kit from day one.</p>
+    </div>
+  </section>
+
+  <section style="border-top:0; padding-top:8px">
+    <div class="wrap">
+      <h2>Protocols</h2>
+      <div class="kit">
+        <div class="k pass" style="color:var(--pass)">Now</div><div class="v">Wishbone, SPI — Initiator / Target / Monitor, UVM agent, checkers, coverage.</div>
+        <div class="k accent">Next</div><div class="v">AXI4-Lite, then AXI4 (multi-stream: read/write channels), AHB, APB, Avalon.</div>
+        <div class="k" style="color:var(--slate-2)">Later</div><div class="v">I²C, UART, and community-requested protocols.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Platforms</h2>
+      <div class="kit">
+        <div class="k pass" style="color:var(--pass)">Now</div><div class="v">SystemVerilog / UVM agents; formal checkers under SymbiYosys.</div>
+        <div class="k accent">In progress</div><div class="v">cocotb signal-level interface to the transactor FIFOs.</div>
+        <div class="k" style="color:var(--slate-2)">Planned</div><div class="v">PSS (Accellera Portable Stimulus) + portable coverage; Python operation API over Zuspec/sysmesh DPI FIFOs, with a path to emulation.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Coverage</h2>
+      <p class="lede">Coverage is not a milestone — it's part of the kit definition. Today: SystemVerilog covergroups sampled by the Monitor. Planned: a portable coverage model (Zuspec/PSS) so the same intent travels across simulation, formal, and emulation.</p>
+      <p class="legend">Want a protocol or platform sooner? Open a <a href="https://github.com/featherweight-vip">protocol request</a>.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Featherweight VIP · Roadmap</span>
+    <span><a href="index.html">home</a> · <a href="https://github.com/featherweight-vip">GitHub</a></span>
+  </div>
+</footer>
+</body>
+</html>
